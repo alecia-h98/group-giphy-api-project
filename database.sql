@@ -29,3 +29,13 @@ CREATE TABLE "favorites" (
   "category_id" INT NOT NULL,
   "giphy_image_url"  VARCHAR (255) NOT NULL
 );
+
+
+- Favorites table
+CREATE TABLE "favorites" (
+  "id" SERIAL PRIMARY KEY,
+  "giphy_image_url" VARCHAR(255) NOT NULL, 
+  "category_id" INT NOT NULL,
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  "favourite" BOOLEAN DEFAULT FALSE,
+);
