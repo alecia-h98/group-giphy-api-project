@@ -27,5 +27,8 @@ INSERT INTO "categories"
 CREATE TABLE "favorites" (
   "id" SERIAL PRIMARY KEY,
   "category_id" INT NOT NULL,
-  "giphy_image_url"  VARCHAR (255) NOT NULL
+  "giphy_image_url"  VARCHAR (255) NOT NULL,
+  "favorited" BOOLEAN DEFAULT FALSE,
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  
 );
