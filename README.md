@@ -1,5 +1,7 @@
 # Group Giphy API Project: Search and Favorites
 
+eat ham and win!
+
 This week you will be building a Giphy Searching and Favoriting application which allows the user to save images and sort them into categories.
 
 In this project you will need to utilize React and Zustand and integrate them with a third-party API. Once your team has established a solid starting point, be sure to use branches and pull requests to facilitate collaboration.
