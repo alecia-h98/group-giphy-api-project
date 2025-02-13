@@ -24,11 +24,12 @@ INSERT INTO "categories"
 -- categories via foreign key. This is a one-to-many relationship:
 --    One favorite has one category.
 --    One category can be had by many favorites.
+
+- Favorites table
 CREATE TABLE "favorites" (
   "id" SERIAL PRIMARY KEY,
+  "giphy_image_url" VARCHAR(255) NOT NULL, 
   "category_id" INT NOT NULL,
-  "giphy_image_url"  VARCHAR (255) NOT NULL,
-  "favorited" BOOLEAN DEFAULT FALSE,
-  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  "favourite" BOOLEAN DEFAULT FALSE,
 );
