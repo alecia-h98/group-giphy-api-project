@@ -5,7 +5,7 @@ function FavoritesList() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    alert("You are headed to the homepage");
+    alert("You are headed to the home page");
     navigate('/');
   }; 
 

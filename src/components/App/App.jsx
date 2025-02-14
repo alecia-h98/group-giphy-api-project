@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import  useGifStore  from "../../../Zustand/store";
+import { Route, Routes } from 'react-router-dom';
+import Menu from "../Menu/Menu";
+import FavoritesList from "../FavoritesList/FavoritesList";
+
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const addFavorite = useGifStore((store) => store.addFavorite);
@@ -56,8 +60,11 @@ console.log(`search results`, searchResults);
         </div>
       </div>
       <div id="link">
-        {/* <FavoritesList /> */}
       </div>
+      <Routes>
+        <Route path='/' element={<Menu />} />
+        <Route path='/favorites' element={<FavoritesList />} />
+      </Routes>
     </div>
   );
 }
