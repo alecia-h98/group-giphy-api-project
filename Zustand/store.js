@@ -39,16 +39,28 @@ const useGifStore = create((set, get) => ({
     }
   },
 
-  
+  // Fetch search results
   fetchSearchResults: async (query) => {
     try {
       console.log(`searching for query ${query}`);
       const response = await axios.get(`/api/search/${query}`); 
-      set(() => ({searchResults: response.data.data }));  
+      set(() => ({ searchResults: response.data.data }));  
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
-  }
+  },
+
+  // Set category on favorite
+  setCategoryOnFavorite: async (id, categoryId) => {
+    try {
+      console.log(`setting category for favorite id ${id} to category id ${categoryId}`);
+      await axios.put(`/api/favorites/${id}`, { category_id: categoryId });
+      // Refresh the favorites list after updating the category
+      get().fetchFavorites();
+    } catch (error) {
+      console.error('Error setting category on favorite:', error);
+    }
+  },
 }));
 
 export default useGifStore;
