@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-const useStore = create((set, get) => ({
+const useGifStore = create((set, get) => ({
   categories: [],       
   favorites: [],
   searchResults: [],
@@ -48,4 +48,4 @@ const useStore = create((set, get) => ({
   },
 }));
 
-export default useStore;
+export default useGifStore;
