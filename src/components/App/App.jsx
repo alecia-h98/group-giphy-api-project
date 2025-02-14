@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import useStore from "zustand";
-// import FavoritesList from "./FavoritesList/FavoritesList";
-
+import  useGifStore  from "../../../Zustand/store";
 function App() {
-  const store = useStore();
-  console.log(store);
-  // const searchResults = useStore((store) => store.searchResults);
-  // const fetchSearchResults = useStore((store) => store.fetchSearchResults);
-  // const store = useStore();
+  const [searchTerm, setSearchTerm] = useState('');
+  const addFavorite = useGifStore((store) => store.addFavorite);
+  const fetchSearchResults = useGifStore((store) => store.fetchSearchResults);
+  const searchResults = useGifStore((store) => store.searchResults);
   // console.log(store);
   
 
@@ -43,7 +40,7 @@ function App() {
 
     <div className="image-item">
         <div className="card">
-          {store.searchResults.map((gif) => (
+          {searchResults.map((gif) => (
             <div key={gif.id} className="card">
               <div className="front">
                 <img src={gif.images.original.url} alt="Image" />
