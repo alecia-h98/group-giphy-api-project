@@ -29,8 +29,7 @@ INSERT INTO "categories"
 CREATE TABLE "favorites" (
   "id" SERIAL PRIMARY KEY,
   "giphy_image_url" VARCHAR(255) NOT NULL, 
-  "category_id" INT NOT NULL,
+  "category_id" INT,
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "favourite" BOOLEAN DEFAULT FALSE,
 );
 ALTER TABLE "public"."favorites" DROP COLUMN "favorited";
