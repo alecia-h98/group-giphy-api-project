@@ -33,3 +33,4 @@ CREATE TABLE "favorites" (
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   "favourite" BOOLEAN DEFAULT FALSE,
 );
+ALTER TABLE "public"."favorites" DROP COLUMN "favorited";
