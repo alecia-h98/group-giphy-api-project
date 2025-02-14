@@ -17,14 +17,14 @@ const useGifStore = create((set, get) => ({
   },
 
   // Fetch favorites from the server
-  fetchFavorites: async () => {
-    try {
-      const response = await axios.get('/api/favorites');  
-      set({ favorites: response.data });  
-    } catch (error) {
-      console.error('Error fetching favorites:', error);
-    }
-  },
+  // fetchFavorites: async () => {
+  //   try {
+  //     const response = await axios.get('/api/favorites');  
+  //     set({ favorites: response.data });  
+  //   } catch (error) {
+  //     console.error('Error fetching favorites:', error);
+  //   }
+  // },
 
   // Add a favorite image to the database
   addFavorite: async (gif) => {
@@ -40,12 +40,12 @@ const useGifStore = create((set, get) => ({
   
   fetchSearchResults: async (query) => {
     try {
-      const response = await axios.get(`/api/gits/${query}`); 
-      set({ searchResults: response.data.data });  
+      const response = await axios.get(`/api/search/${query}`); 
+      set(() => ({searchResults: [response.data.data] }));  
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
-  },
+  }
 }));
 
 export default useGifStore;
