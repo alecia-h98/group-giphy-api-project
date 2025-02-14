@@ -1,21 +1,26 @@
-import { useEffect } from "react";
-import  useGifStore  from "../../../Zustand/store";
+import { useEffect, useState } from "react";
+import useStore from "zustand";
+// import FavoritesList from "./FavoritesList/FavoritesList";
+
 function App() {
-  const addFavorite = useGifStore((store) => store.addFavorite);
-  const fetchSearchResults = useGifStore((store) => store.fetchSearchResults);
+  const store = useStore();
+  console.log(store);
+  // const searchResults = useStore((store) => store.searchResults);
+  // const fetchSearchResults = useStore((store) => store.fetchSearchResults);
+  // const store = useStore();
   // console.log(store);
   
 
   useEffect(() => {
-    fetchSearchResults();
+    store.fetchSearchResults();
   }, []);
 
   const handleFavorite = () => {
-    addFavorite();
+    store.setFavorites();
   };
 
   const handleSearch = async () => {
-      fetchSearchResults();
+      store.fetchSearchResults();
     };
   
   return (
@@ -49,6 +54,9 @@ function App() {
             </div>
           ))}
         </div>
+      </div>
+      <div id="link">
+        {/* <FavoritesList /> */}
       </div>
     </div>
   );
