@@ -4,14 +4,13 @@ import axios from 'axios';
 const useStore = create((set, get) => ({
   categories: [],       
   favorites: [],
-  
-  
+  searchResults: [],
 
   // Fetch categories from the server
   fetchCategories: async () => {
     try {
       const response = await axios.get('/api/categories');  
-      set({ categories: response.data.data});  
+      set({ categories: response.data.data });  
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
@@ -30,15 +29,23 @@ const useStore = create((set, get) => ({
   // Add a favorite image to the database
   addFavorite: async (gif) => {
     try {
-      const response = await axios.post('/api/favorites', gif);  
-      set((state) => ({
-        favorites: [...state.favorites, response.data], 
-      }));
+      await axios.post('/api/favorites', gif); 
+      // Refresh data
+      get().fetchFavorites(); 
     } catch (error) {
       console.error('Error adding favorite:', error);
     }
   },
 
+  
+  fetchSearchResults: async (query) => {
+    try {
+      const response = await axios.get(`/api/gits/${query}`); 
+      set({ searchResults: response.data.data });  
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+  },
 }));
 
 export default useStore;
