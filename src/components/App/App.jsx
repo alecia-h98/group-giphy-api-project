@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import  useGifStore  from "../../../Zustand/store";
+import { Route, Routes } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import FavoritesList from "./FavoritesList/FavoritesList";
+
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const addFavorite = useGifStore((store) => store.addFavorite);
@@ -7,17 +11,23 @@ function App() {
   const searchResults = useGifStore((store) => store.searchResults);
   // console.log(store);
   
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+      alert("You are headed to Favorites");
+      navigate('/favorites');
+    };
 
   useEffect(() => {
-    store.fetchSearchResults();
+    fetchSearchResults();
   }, []);
 
   const handleFavorite = () => {
-    store.setFavorites();
+    setFavorites();
   };
 
   const handleSearch = async () => {
-      store.fetchSearchResults();
+      fetchSearchResults();
     };
   
   return (
@@ -53,8 +63,12 @@ function App() {
         </div>
       </div>
       <div id="link">
-        {/* <FavoritesList /> */}
       </div>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='/favorites' element={<FavoritesList />} />
+      </Routes>
+      <button onClick={() => handleClick()}>Favorites</button>
     </div>
   );
 }
