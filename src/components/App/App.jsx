@@ -6,18 +6,21 @@ function App() {
   const fetchSearchResults = useGifStore((store) => store.fetchSearchResults);
   const searchResults = useGifStore((store) => store.searchResults);
 
+console.log(`search results`, searchResults);
   
 
   useEffect(() => {
-    fetchSearchResults();
+    // fetchSearchResults();
   }, []);
 
-  const handleFavorite = () => {
-    setFavorites();
+  const handleFavorite = (gif) => {
+    const favorite = {giphy_image_url: gif.url}
+    addFavorite(favorite);
+  
   };
 
   const handleSearch = async () => {
-      fetchSearchResults();
+      fetchSearchResults(searchTerm);
     };
   
   return (
@@ -44,7 +47,7 @@ function App() {
             <div key={index} className="card">
               <div className="front">
                 <img src={gif?.images?.original?.url} alt="Image" />
-                <button type="button" className="btn btn-primary" onClick={() => handleFavorite()}>
+                <button type="button" className="btn btn-primary" onClick={() => handleFavorite(gif)}>
                   Favorite This! &#9829;
                 </button>
               </div>
