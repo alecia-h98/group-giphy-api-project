@@ -1,24 +1,21 @@
-import { useEffect, useState } from "react";
-import { useStore } from "zustand";
+import { useEffect } from "react";
+import  useGifStore  from "../../../Zustand/store";
 function App() {
-  const store = useStore();
-  console.log(store);
-  // const searchResults = useStore((store) => store.searchResults);
-  // const fetchSearchResults = useStore((store) => store.fetchSearchResults);
-  // const store = useStore();
+  const addFavorite = useGifStore((store) => store.addFavorite);
+  const fetchSearchResults = useGifStore((store) => store.fetchSearchResults);
   // console.log(store);
   
 
   useEffect(() => {
-    store.fetchSearchResults();
+    fetchSearchResults();
   }, []);
 
-  const handleFavorite = (gif) => {
-    store.setFavorites((prevFavorites) => [...prevFavorites, gif]);
+  const handleFavorite = () => {
+    addFavorite();
   };
 
   const handleSearch = async () => {
-      store.fetchSearchResults();
+      fetchSearchResults();
     };
   
   return (
@@ -45,7 +42,7 @@ function App() {
             <div key={gif.id} className="card">
               <div className="front">
                 <img src={gif.images.original.url} alt="Image" />
-                <button type="button" className="btn btn-primary" onClick={() => handleFavorite(gif)}>
+                <button type="button" className="btn btn-primary" onClick={() => handleFavorite()}>
                   Favorite This! &#9829;
                 </button>
               </div>
