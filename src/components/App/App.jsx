@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import  useGifStore  from "../../../Zustand/store";
 import { Route, Routes } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
-import FavoritesList from "./FavoritesList/FavoritesList";
+import Menu from "../Menu/Menu";
+import FavoritesList from "../FavoritesList/FavoritesList";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,12 +11,6 @@ function App() {
   const searchResults = useGifStore((store) => store.searchResults);
   // console.log(store);
   
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-      alert("You are headed to Favorites");
-      navigate('/favorites');
-    };
 
   useEffect(() => {
     fetchSearchResults();
@@ -53,7 +47,7 @@ function App() {
           {searchResults.map((gif) => (
             <div key={gif.id} className="card">
               <div className="front">
-                <img src={gif.images.original.url} alt="Image" />
+                <img src={gif?.images?.original?.url} alt="Image" />
                 <button type="button" className="btn btn-primary" onClick={() => handleFavorite()}>
                   Favorite This! &#9829;
                 </button>
@@ -65,10 +59,9 @@ function App() {
       <div id="link">
       </div>
       <Routes>
-        <Route path='/' element={<App />} />
+        <Route path='/' element={<Menu />} />
         <Route path='/favorites' element={<FavoritesList />} />
       </Routes>
-      <button onClick={() => handleClick()}>Favorites</button>
     </div>
   );
 }
