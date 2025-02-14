@@ -9,15 +9,15 @@ function App() {
   
 
   useEffect(() => {
-    fetchSearchResults();
+    store.fetchSearchResults();
   }, []);
 
   const handleFavorite = () => {
-    addFavorite();
+    store.setFavorites();
   };
 
   const handleSearch = async () => {
-      fetchSearchResults();
+      store.fetchSearchResults();
     };
   
   return (
@@ -51,6 +51,9 @@ function App() {
             </div>
           ))}
         </div>
+      </div>
+      <div id="link">
+        {/* <FavoritesList /> */}
       </div>
     </div>
   );
