@@ -5,19 +5,19 @@ function App() {
   const addFavorite = useGifStore((store) => store.addFavorite);
   const fetchSearchResults = useGifStore((store) => store.fetchSearchResults);
   const searchResults = useGifStore((store) => store.searchResults);
-  // console.log(store);
+
   
 
   useEffect(() => {
-    store.fetchSearchResults();
+    fetchSearchResults();
   }, []);
 
   const handleFavorite = () => {
-    store.setFavorites();
+    setFavorites();
   };
 
   const handleSearch = async () => {
-      store.fetchSearchResults();
+      fetchSearchResults();
     };
   
   return (
@@ -40,10 +40,10 @@ function App() {
 
     <div className="image-item">
         <div className="card">
-          {searchResults.map((gif) => (
-            <div key={gif.id} className="card">
+          {searchResults.map((gif, index) => (
+            <div key={index} className="card">
               <div className="front">
-                <img src={gif.images.original.url} alt="Image" />
+                <img src={gif?.images?.original?.url} alt="Image" />
                 <button type="button" className="btn btn-primary" onClick={() => handleFavorite()}>
                   Favorite This! &#9829;
                 </button>
@@ -63,22 +63,3 @@ function App() {
 
 export default App;
 
-
-
-
-
-{/* // return (
-//   <div>
-//     <h1>Giphy Search!</h1>
-//     <div className="image-item">
-//       {store?.gifs.map(gif => (
-//         <div key={gif.id} className="card">
-//           <div className="front">
-//             <img src={gif.images.original.url} alt="Image" />
-//             <button type="button" className="btn btn-primary">&#9829;</button>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   </div>
-// ); */}
